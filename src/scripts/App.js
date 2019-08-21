@@ -1,6 +1,10 @@
+import ScrollableComponents from './ScrollableComponents';
+
 class App {
-  init () {
-    console.log('init app');
+  static init () {
+    const scrollableComponents = new ScrollableComponents();
+
+    scrollableComponents.init();
   }
 }
 
