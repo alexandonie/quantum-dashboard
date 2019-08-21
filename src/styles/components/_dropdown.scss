@@ -1,0 +1,91 @@
+.dropdown .dropdown-item:first-of-type,
+.dropup .dropdown-item:last-of-type,
+.dropright .dropdown-item:first-of-type,
+.dropleft .dropdown-item:first-of-type {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid $dropdown-border-color;
+    border-left: 1px solid $dropdown-border-color;
+    background: $dropdown-bg;
+  }
+
+  &:hover:before {
+    background: $dropdown-link-hover-bg;
+  }
+}
+
+.dropdown .dropdown-item:first-of-type:before {
+  top: -6px;
+  transform: rotate(45deg);
+}
+
+.dropup .dropdown-item:last-of-type:before {
+  bottom: -6px;
+  transform: rotate(-135deg);
+}
+
+.dropdown .dropdown-menu-right .dropdown-item:first-of-type:before,
+.dropup .dropdown-menu-right .dropdown-item:last-of-type:before {
+  left: auto;
+  right: 10px;
+}
+
+.dropright .dropdown-item:first-of-type:before {
+  top: 50%;
+  left: -6px;
+  transform: rotate(-45deg) translateY(-50%);
+  transform-origin: top;
+}
+
+.dropleft .dropdown-item:first-of-type:before {
+  top: 50%;
+  right: -6px;
+  left: auto;
+  transform: rotate(135deg) translateY(-50%);
+  transform-origin: top;
+}
+
+/*
+  Remove menu's arrow indicator when the dropdown's position
+  changes (on the opposite side/direction) to avoid confusing ui.
+
+  e.g:
+  Dropdown shows on top instead of bottom because it doesn't have
+  enough space on the bottom but the arrow is still on top which
+  in certain cases can be confusing.
+*/
+.dropdown .dropdown-menu[x-placement*="top"],
+.dropup .dropdown-menu[x-placement*="bottom"],
+.dropright .dropdown-menu[x-placement*="left"],
+.dropleft .dropdown-menu[x-placement*="right"] {
+  .dropdown-item:first-of-type:before,
+  .dropdown-item:last-of-type:before {
+    content: none;
+    display: none;
+  }
+}
+
+.dropdown-item {
+  border-bottom: 1px solid $dropdown-border-color;
+
+  &:first-of-type {
+    border-top-right-radius: $dropdown-border-radius;
+    border-top-left-radius: $dropdown-border-radius;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+    border-bottom-right-radius: $dropdown-border-radius;
+    border-bottom-left-radius: $dropdown-border-radius;
+  }
+}
+
+.dropdown-divider { margin: 0; }

@@ -1,0 +1,140 @@
+.sidebar {
+  position: absolute;
+  flex-basis: auto;
+  flex-grow: 0;
+
+  // header (contains the navigation toggle button and the logo)
+  &-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    // used left instead of transform intentionally, to avoid the new stacking context
+    left: 0;
+    transition: left 0.2s linear;
+  }
+
+  // toggle (a button visible only on mobile that opens and closes the navigation)
+  &-toggle {
+    padding: 1px ($spacer * 3);
+    box-sizing: border-box;
+    color: $neutral;
+    border: none;
+    background: transparent;
+    z-index: 2;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // logo (the container that holds the logo)
+  &-logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // nav (the container holding the navigation)
+  &-nav {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    height: 90vh;
+    padding-top: $spacer * 12;
+    padding-bottom: $spacer * 4;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: -2; // has to do with a weird z-index bug in safari, do not remove
+    transform: translateX($spacer * 6) scale(0.9);
+    transition: all 0.2s linear;
+  }
+
+  // a nice gradient visible on top of the main container when the navigation is active (visible only on mobile)
+  &-backdrop {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: 30%;
+    background: linear-gradient(to right, rgba($body-bg, 0) 0%,rgba($body-bg, 1) 80%);
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.4s linear;
+  }
+}
+
+// active styles (used on mobile to toggle the navigation)
+.sidebar-active {
+  .sidebar-header {
+    left: $sidebar-width + $grid-gutter-width;
+  }
+
+  .sidebar-toggle .fa-bars:before {
+    // changes the hamburger menu icon into a close (x) icon
+    // for more details, see font awesome documentation
+    content: '\f00d';
+  }
+
+  .sidebar-nav {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+  }
+
+  .sidebar-backdrop {
+    visibility: visible;
+    width: calc(100% - #{$sidebar-width + $grid-gutter-width * 2});
+    opacity: 1;
+    transition: all 0.2s linear;
+  }
+}
+
+// desktop styles
+@include media-breakpoint-up(lg) {
+  .sidebar {
+    position: relative;
+    width: $sidebar-width;
+
+    &-header,
+    &-nav {
+      position: fixed;
+      left: auto;
+    }
+
+    &-toggle  {
+      display: none;
+    }
+
+    &-logo {
+      position: static;
+      top: auto;
+      left: auto;
+      transform: none;
+      margin-left: $spacer * 2;
+    }
+
+    &-nav {
+      top: $spacer * 13;
+      width: $sidebar-width - $grid-gutter-width;
+      height: auto;
+      padding-top: 0;
+      opacity: 1;
+      transform: none;
+      z-index: 0;
+    }
+
+    &-backdrop {
+      display: none;
+    }
+
+    &.sidebar-active {
+      .sidebar-header {
+        left: auto;
+      }
+    }
+  }
+}

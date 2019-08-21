@@ -1,0 +1,20 @@
+.main-content {
+  margin-top: $spacer * 7;
+  transform: translateX(0) translateZ(0);
+  transition: transform 0.2s linear;
+
+  &.main-content-offset {
+    transform: translateX($sidebar-width + $grid-gutter-width);
+  }
+}
+
+// desktop styles
+@include media-breakpoint-up(lg) {
+  .main-content {
+    margin-top: 0;
+
+    &.main-content-offset {
+      transform: none;
+    }
+  }
+}

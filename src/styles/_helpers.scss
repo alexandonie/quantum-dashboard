@@ -1,0 +1,23 @@
+.scroll-disabled {
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-scrollable="true"] {
+  overflow: hidden;
+  -ms-overflow-style: none;
+}
+
+.overflow-hidden { overflow: hidden; }
+.overflow-scroll { overflow: scroll; }
+
+.bg-muted { background-color: rgba($body-bg, 0.45); }
+
+// using important to overwrite bootstrap's border utility classes
+.border-muted { border-color: $gray-200 !important; }
+
+.vh-100 { min-height: 100vh; }
+
+.opacity-0 { opacity: 0; }
+.opacity-05 { opacity: 0.5; }
+.opacity-1 { opacity: 1; }

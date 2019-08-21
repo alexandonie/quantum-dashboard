@@ -1,0 +1,34 @@
+html, body {
+  font-size: 14px;
+
+  // making sure the fonts will render the same across different web browsers
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p { margin-bottom: 1.143rem; }
+
+sup { top: -0.214em; }
+
+// size helpers
+@each $size, $value in $text-sizes {
+  .text-#{$size} {
+    font-size: $value;
+  }
+}
+
+// overwriting bootstrap's secondary text color helper class
+.text-secondary { color: $gray-700 !important; }
+
+// isolated helper to avoid the generation of multiple classes
+.text-black,
+.text-black:hover {
+  color: $black;
+}
+
+// decoration helper
+.no-underline,
+.no-underline:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,26 @@
+.cargo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cargo-container {
+  width: 100%;
+  margin-bottom: -1px;
+  padding: ($spacer * 2) ($spacer * 4);
+  box-sizing: border-box;
+  border: 1px solid $border-color;
+
+  @include media-breakpoint-up(md) {
+    width: calc(50% + 1px);
+    margin-right: -1px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: calc(25% + 1px);
+  }
+}
+
+ul.cargo,
+ol.cargo {
+  @extend .list-unstyled;
+}
