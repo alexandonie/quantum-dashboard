@@ -45,6 +45,10 @@ class Navigation {
   }
 
   init () {
+    if (!this.sidebar) {
+      return;
+    }
+
     this.toggleBtns.forEach(btn => {
       btn.addEventListener('click', this.toggle.bind(this));
     });
